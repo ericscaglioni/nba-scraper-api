@@ -7,7 +7,7 @@ const app = express();
 consign().include('./src/controller').into(app);
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api/', router);
 module.exports = app;

@@ -1,7 +1,7 @@
-const service = require('../service');
+const service = require('../service/conference');
 
 const getConferences = (req, res) => {
   return res.status(200).send(service.getConferences());
 };
 
-module.exports = {getConferences};
+module.exports = { getConferences };

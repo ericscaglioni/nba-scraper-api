@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "lint": "eslint --ignore-path .gitignore .",
     "lint:fix": "eslint --ignore-path .gitignore . --fix",
     "start": "node index.js"
@@ -18,13 +18,16 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
+    "@types/jest": "^25.2.2",
     "eslint": "^7.0.0",
     "eslint-config-google": "^0.14.0",
-    "husky": "^4.2.5"
+    "husky": "^4.2.5",
+    "jest": "^26.0.1"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint:fix"
+      "pre-commit": "npm run lint:fix",
+      "pre-push": "npm run lint:fix && npm test"
     }
   }
 }

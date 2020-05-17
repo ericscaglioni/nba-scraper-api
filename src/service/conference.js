@@ -2,4 +2,4 @@ const getConferences = () => {
   return 'sucesso';
 };
 
-module.exports = {getConferences};
+module.exports = { getConferences };

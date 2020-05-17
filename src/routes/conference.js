@@ -1,8 +1,8 @@
 const express = require('express');
-const controller = require('../controller');
+const conference = require('../controller/conference');
 
 const router = express.Router();
 
-router.route('/').get(controller.getConferences);
+router.route('/').get(conference.getConferences);
 
 module.exports = router;
