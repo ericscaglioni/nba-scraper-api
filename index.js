@@ -3,7 +3,7 @@ const config = require('./src/config/env');
 
 app.listen(config.portApi, () => {
   console.log(
-    `API Server started and listening on port ${config.portApi} (${config.env})`
+      `API running on port ${config.portApi} (${config.env})`,
   );
 });
 
