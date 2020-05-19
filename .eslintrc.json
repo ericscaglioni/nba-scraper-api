@@ -19,6 +19,11 @@
         "object-curly-spacing": ["error", "always", {
             "objectsInObjects": false,
             "arraysInObjects": false
+        }],
+        "array-bracket-spacing": ["error", "always", {
+            "singleValue": false,
+            "objectsInArrays": false,
+            "arraysInArrays": false
         }]
     }
 }

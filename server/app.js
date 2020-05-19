@@ -1,5 +1,5 @@
-const app = require('./src/config/express');
-const config = require('./src/config/env');
+const app = require('./config/express');
+const config = require('./config/config');
 
 app.listen(config.portApi, () => {
   console.log(
