@@ -76,4 +76,21 @@ describe('Utils', () => {
       });
     });
   });
+
+  it('Get Logo Code', () => {
+    let response = utilsService.getLogoCode('LAL');
+    expect(response).toBe('LAL');
+
+    response = utilsService.getLogoCode('PHO');
+    expect(response).toBe('PHX');
+
+    response = utilsService.getLogoCode('BRK');
+    expect(response).toBe('BKN');
+
+    response = utilsService.getLogoCode('CHO');
+    expect(response).toBe('CHA');
+
+    response = utilsService.getLogoCode('LAC');
+    expect(response).toBe('LAC');
+  });
 });

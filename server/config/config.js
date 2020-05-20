@@ -19,4 +19,7 @@ module.exports = {
     winsTag: addEnv('TEAM_WINS_TAG', 'wins'),
     lossesTag: addEnv('TEAM_LOSSES_TAG', 'losses'),
   },
+  team: {
+    logoUrl: addEnv('TEAM_LOGO_URL', 'https://www.nba.com/assets/logos/teams/primary/web/#CODE#.svg'),
+  },
 };

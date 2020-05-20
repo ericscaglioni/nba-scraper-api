@@ -1,6 +1,7 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const config = require('../config/config');
+const constants = require('../utils/constants');
 
 const getParsedHtml = async (url) => {
   try {
@@ -15,8 +16,13 @@ const getTeam = ($, that) => {
   const teamAnchorLink =
           $(that).find(`[data-stat=${config.conferenceTeams.nameTag}] a`);
 
+  const code = teamAnchorLink.text();
   return {
-    code: teamAnchorLink.text(),
+    logo: config.team.logoUrl.replace(
+      constants.stringToReplace,
+      getLogoCode(code)
+    ),
+    code: code,
     name: teamAnchorLink.attr('title'),
     record: {
       wins: $(that).find(
@@ -42,8 +48,11 @@ const getTeamsByConferenceId = ($, confDivId) => {
   return teams;
 };
 
+const getLogoCode = code => constants.logoCodes[code] || code;
+
 module.exports = {
   getParsedHtml,
   getTeamsByConferenceId,
   getTeam,
+  getLogoCode
 };
