@@ -1,7 +1,7 @@
 const getTeam = (req, res) => {
-    res.send(req.params);
+  res.send(req.params);
 };
 
 module.exports = {
-    getTeam
-}
+  getTeam,
+};

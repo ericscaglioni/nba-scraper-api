@@ -24,12 +24,12 @@ exports.getConferences = async () => {
 
 exports.getEasternTeams = ($) => {
   return conferenceService
-    .getTeamsByConferenceId($, config.conferenceTeams.easterndivId);
+      .getTeamsByConferenceId($, config.conferenceTeams.easterndivId);
 };
 
 exports.getWesternTeams = ($) => {
   return conferenceService
-    .getTeamsByConferenceId($, config.conferenceTeams.westernDivId);
+      .getTeamsByConferenceId($, config.conferenceTeams.westernDivId);
 };
 
 exports.getTeamsByConferenceId = ($, confDivId) => {
@@ -38,7 +38,7 @@ exports.getTeamsByConferenceId = ($, confDivId) => {
 
   const teams = [];
 
-  teamsRows.each(function () {
+  teamsRows.each(function() {
     teams.push(conferenceService.getTeam($, this));
   });
 
@@ -59,12 +59,12 @@ exports.getTeam = ($, that) => {
     name: teamAnchorLink.attr('title'),
     record: {
       wins: utilsService.getTagTextByTagName(
-        $(that),
-        config.conferenceTeams.winsTag
+          $(that),
+          config.conferenceTeams.winsTag,
       ),
       losses: utilsService.getTagTextByTagName(
-        $(that),
-        config.conferenceTeams.lossesTag
+          $(that),
+          config.conferenceTeams.lossesTag,
       ),
     },
   };
