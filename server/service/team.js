@@ -1,0 +1,77 @@
+const constants = require('../utils/constants');
+const utilsService = require('./utils');
+const config = require('../config/config');
+const teamService = require('./team');
+
+exports.getTeamRoster = ($, rosterDivId) => {
+    const teamRosterRows = $(`#${rosterDivId} tbody tr`);
+    if (!teamRosterRows || !teamRosterRows.length) return [];
+
+    const roster = [];
+    teamRosterRows.each(function () {
+        roster.push(teamService.getPlayer($, this));
+    });
+
+    return roster;
+};
+  
+exports.getPlayer = ($, that) => {
+    const { height, weight } = teamService.getPlayerMeasures($(that));
+  
+    return {
+      number: teamService.getPlayerNumber($(that)),
+      name: teamService.getPlayerName($(that)),
+      position: teamService.getPlayerPosition($(that)),
+      bio: {
+        height: height,
+        weight: weight
+      }
+    }
+}
+
+exports.getPlayerMeasures = ($) => {
+    const weight = teamService.convertPoundsToKg(
+        utilsService.getTagTextByTagName(
+            $,
+            config.team.playerTags.weight
+        )
+    );
+    const height = teamService.convertHeight(
+        utilsService.getTagTextByTagName(
+            $,
+            config.team.playerTags.height
+        )
+    );
+
+    return { weight, height };
+};
+
+exports.convertPoundsToKg = (pounds) => {
+    const converted = (pounds / constants.poundsToKgDivisor).toFixed(1);
+    return `${converted}kg`;
+}
+
+exports.convertHeight = (height) => {
+    if (typeof height !== 'string' || !height.includes('-')) return '';
+      
+    const [ feet, inches ] = height.split('-');
+    const converted = utilsService
+        .convertFeetInchesToMeters(Number(feet), Number(inches));
+    return `${converted.replace('.', ',')}m`;
+}
+
+exports.getPlayerNumber = ($) =>
+    utilsService.getTagTextByTagName($, config.team.playerTags.number);
+
+exports.getPlayerName = ($) =>
+    utilsService.getTagTextByTagName($, config.team.playerTags.player);
+
+exports.getPlayerPosition = ($) => {
+    const position =
+        utilsService.getTagTextByTagName($, config.team.playerTags.position);
+
+    return teamService.getPosition(position);
+};
+
+exports.getPosition = (position) => 
+    constants.positions[position] || 'Não definida';

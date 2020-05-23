@@ -21,5 +21,14 @@ module.exports = {
   },
   team: {
     logoUrl: addEnv('TEAM_LOGO_URL', 'https://www.nba.com/assets/logos/teams/primary/web/#CODE#.svg'),
+    url: addEnv('SCRAPER_TEAM_URL', 'https://www.basketball-reference.com/teams/#CODE#/2020.html'),
+    rosterDivId: addEnv('ROSTER_DIV_ID', 'roster'),
+    playerTags: {
+      position: addEnv('PLAYER_POSITION_TAG', 'pos'),
+      player: addEnv('PLAYER_TAG', 'player'),
+      number: addEnv('PLAYER_NUMBER_TAG', 'number'),
+      weight: addEnv('PLAYER_WEIGHT_TAG', 'weight'),
+      height: addEnv('PLAYER_HEIGHT_TAG', 'height')
+    }
   },
 };

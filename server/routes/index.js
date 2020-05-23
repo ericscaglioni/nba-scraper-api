@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const conference = require('./conference');
+const conferenceRoute = require('./conference');
+const teamRoute = require('./team');
 
 // Rota para validarmos se a api está atualizada.
 router.get('/status-api', (req, res) =>
@@ -9,6 +10,7 @@ router.get('/status-api', (req, res) =>
   }),
 );
 
-router.use('/conferences', conference);
+router.use('/conferences', conferenceRoute);
+router.use('/team', teamRoute);
 
 module.exports = router;
