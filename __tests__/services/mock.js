@@ -315,7 +315,9 @@ const expectedPlayerResponse = {
   position: 'Ala armador',
   bio: {
       height: '1,93m',
-      weight: '93.0kg'
+      weight: '93.0kg',
+      birthday: '16/05/1997',
+      age: 22
   }
 };
 

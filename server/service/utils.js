@@ -2,6 +2,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const constants = require('../utils/constants');
 const utilsService = require('./utils');
+const moment = require('moment');
 
 exports.getParsedHtml = async (url) => {
   try {
@@ -20,3 +21,8 @@ exports.convertFeetInchesToCm = (feet, inches) =>
 
 exports.getTagTextByTagName = ($, tagName) =>
   $.find(`[data-stat=${tagName}]`).text();
+
+exports.formatDate = (date) => {
+  if (!date || !(date instanceof Date)) return '';
+  return moment(date).format('DD/MM/YYYY');
+};

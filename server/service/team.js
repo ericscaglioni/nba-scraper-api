@@ -2,6 +2,7 @@ const constants = require('../utils/constants');
 const utilsService = require('./utils');
 const config = require('../config/config');
 const teamService = require('./team');
+const moment = require('moment');
 
 exports.getTeamRoster = ($, rosterDivId) => {
   const teamRosterRows = $(`#${rosterDivId} tbody tr`);
@@ -17,6 +18,7 @@ exports.getTeamRoster = ($, rosterDivId) => {
 
 exports.getPlayer = ($, that) => {
   const { height, weight } = teamService.getPlayerMeasures($(that));
+  const birthday = teamService.getPlayerBirthday($(that));
 
   return {
     number: teamService.getPlayerNumber($(that)),
@@ -25,6 +27,8 @@ exports.getPlayer = ($, that) => {
     bio: {
       height: height,
       weight: weight,
+      birthday: birthday,
+      age: teamService.getPlayerAge(birthday),
     },
   };
 };
@@ -75,3 +79,15 @@ exports.getPlayerPosition = ($) => {
 
 exports.getPosition = (position) =>
   constants.positions[position] || 'Não definida';
+
+exports.getPlayerBirthday = ($) => {
+  const birthday =
+    utilsService.getTagTextByTagName($, config.team.playerTags.birthday);
+  return utilsService.formatDate(new Date(birthday));
+};
+
+exports.getPlayerAge = (birthday) => {
+  const momentBirthday = moment(birthday, 'DD/MM/YYYY');
+  const duration = moment.duration(moment().diff(momentBirthday));
+  return Math.trunc(duration.asYears());
+};

@@ -97,4 +97,14 @@ describe('Utils Service', () => {
 
     expect(response).toBe('');
   });
+
+  it('Format Date', () => {
+    let date = new Date('November 16, 1994');
+    let response = utilsService.formatDate(date);
+    expect(response).toBe('16/11/1994');
+
+    date = undefined;
+    response = utilsService.formatDate(date);
+    expect(response).toBe('');
+  });
 });

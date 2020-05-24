@@ -29,6 +29,7 @@ module.exports = {
       number: addEnv('PLAYER_NUMBER_TAG', 'number'),
       weight: addEnv('PLAYER_WEIGHT_TAG', 'weight'),
       height: addEnv('PLAYER_HEIGHT_TAG', 'height'),
+      birthday: addEnv('PLAYER_BIRTHDAY_TAG', 'birth_date'),
     },
   },
 };

@@ -9,6 +9,9 @@ let teamRosterRows = null;
 
 describe('Team Service', () => {
   beforeEach(() => {
+    jest.resetAllMocks();
+    jest.restoreAllMocks();
+
     $ = cheerio.load(mock.teamRosterTable);
     teamRosterRows = $(`#${config.team.rosterDivId} tbody tr`);
   });
@@ -121,7 +124,31 @@ describe('Team Service', () => {
     expect(response).toBe('0');
   });
 
+  it('Get Player Birthday', () => {
+    const getTagTextByTagName = jest
+        .spyOn(utilsService, 'getTagTextByTagName')
+        .mockReturnValueOnce('May 16, 1997');
+
+    let counter = 0;
+    let response = undefined;
+    teamRosterRows.each(function() {
+      if (counter === 1) return;
+      response = teamService.getPlayerBirthday($(this));
+      counter++;
+    });
+
+    expect(response).toBe('16/05/1997');
+    expect(getTagTextByTagName).toHaveBeenCalled();
+  });
+
+  it('Get Player Age', () => {
+    Date.now = jest.fn(() => new Date('2020-01-01T12:33:37.000Z'));
+    const response = teamService.getPlayerAge('16/05/1997');
+    expect(response).toBe(22);
+  });
+
   it('Get Whole Player - Success', () => {
+    Date.now = jest.fn(() => new Date('2020-01-01T12:33:37.000Z'));
     let counter = 0;
     let response = undefined;
     teamRosterRows.each(function() {
@@ -133,6 +160,7 @@ describe('Team Service', () => {
   });
 
   it('Get Team Roster - Success', () => {
+    Date.now = jest.fn(() => new Date('2020-01-01T12:33:37.000Z'));
     const response = teamService.getTeamRoster($, config.team.rosterDivId);
     expect(response).toHaveLength(17);
 
