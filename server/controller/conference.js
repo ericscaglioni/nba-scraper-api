@@ -7,13 +7,13 @@ const getConferences = async (req, res) => {
     return res.status(500).json({
       userMessage:
         'Ocorreu um problema no servidor. Tente novamente mais tarde.',
-      data: {},
+      data: {}
     });
   }
 
   return res.status(200).json({
     userMessage: '',
-    data: conferences,
+    data: conferences
   });
 };
 

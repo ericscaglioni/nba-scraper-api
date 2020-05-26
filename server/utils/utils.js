@@ -5,5 +5,5 @@ const isEmptyObject = (obj) => {
 };
 
 module.exports = {
-  isEmptyObject,
+  isEmptyObject
 };

@@ -6,8 +6,8 @@ const teamRoute = require('./team');
 // Rota para validarmos se a api está atualizada.
 router.get('/status-api', (req, res) =>
   res.json({
-    status: 'ok',
-  }),
+    status: 'ok'
+  })
 );
 
 router.use('/conferences', conferenceRoute);

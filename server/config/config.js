@@ -17,11 +17,17 @@ module.exports = {
     westernDivId: addEnv('WESTERN_DIV_ID', 'confs_standings_W'),
     nameTag: addEnv('TEAM_NAME_TAG', 'team_name'),
     winsTag: addEnv('TEAM_WINS_TAG', 'wins'),
-    lossesTag: addEnv('TEAM_LOSSES_TAG', 'losses'),
+    lossesTag: addEnv('TEAM_LOSSES_TAG', 'losses')
   },
   team: {
-    logoUrl: addEnv('TEAM_LOGO_URL', 'https://www.nba.com/assets/logos/teams/primary/web/#CODE#.svg'),
-    url: addEnv('SCRAPER_TEAM_URL', 'https://www.basketball-reference.com/teams/#CODE#/2020.html'),
+    logoUrl: addEnv(
+      'TEAM_LOGO_URL',
+      'https://www.nba.com/assets/logos/teams/primary/web/#CODE#.svg'
+    ),
+    url: addEnv(
+      'SCRAPER_TEAM_URL',
+      'https://www.basketball-reference.com/teams/#CODE#/2020.html'
+    ),
     rosterDivId: addEnv('ROSTER_DIV_ID', 'roster'),
     playerTags: {
       position: addEnv('PLAYER_POSITION_TAG', 'pos'),
@@ -29,7 +35,7 @@ module.exports = {
       number: addEnv('PLAYER_NUMBER_TAG', 'number'),
       weight: addEnv('PLAYER_WEIGHT_TAG', 'weight'),
       height: addEnv('PLAYER_HEIGHT_TAG', 'height'),
-      birthday: addEnv('PLAYER_BIRTHDAY_TAG', 'birth_date'),
-    },
-  },
+      birthday: addEnv('PLAYER_BIRTHDAY_TAG', 'birth_date')
+    }
+  }
 };

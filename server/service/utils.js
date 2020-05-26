@@ -17,7 +17,7 @@ exports.convertFeetInchesToMeters = (feet, inches) =>
   (utilsService.convertFeetInchesToCm(feet, inches) / 100).toFixed(2);
 
 exports.convertFeetInchesToCm = (feet, inches) =>
-  (feet * constants.feetMultiplier + inches * constants.inchesMultiplier);
+  feet * constants.feetMultiplier + inches * constants.inchesMultiplier;
 
 exports.getTagTextByTagName = ($, tagName) =>
   $.find(`[data-stat=${tagName}]`).text();

@@ -8,8 +8,8 @@ describe('GET', () => {
 
   it('/conferences - Success', async (done) => {
     const getConferences = jest
-        .spyOn(service, 'getConferences')
-        .mockResolvedValueOnce(mock.getConferencesServiceResponse);
+      .spyOn(service, 'getConferences')
+      .mockResolvedValueOnce(mock.getConferencesServiceResponse);
 
     const response = await supertest(app).get(conferencesRoute);
     expect(getConferences).toHaveBeenCalledWith();
@@ -20,8 +20,8 @@ describe('GET', () => {
 
   it('/conferences - Failure', async (done) => {
     const getConferences = jest
-        .spyOn(service, 'getConferences')
-        .mockResolvedValueOnce({});
+      .spyOn(service, 'getConferences')
+      .mockResolvedValueOnce({});
 
     const response = await supertest(app).get(conferencesRoute);
     expect(getConferences).toHaveBeenCalledWith();

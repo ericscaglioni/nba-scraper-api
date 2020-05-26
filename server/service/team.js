@@ -9,7 +9,7 @@ exports.getTeamRoster = ($, rosterDivId) => {
   if (!teamRosterRows || !teamRosterRows.length) return [];
 
   const roster = [];
-  teamRosterRows.each(function() {
+  teamRosterRows.each(function () {
     roster.push(teamService.getPlayer($, this));
   });
 
@@ -28,23 +28,17 @@ exports.getPlayer = ($, that) => {
       height: height,
       weight: weight,
       birthday: birthday,
-      age: teamService.getPlayerAge(birthday),
-    },
+      age: teamService.getPlayerAge(birthday)
+    }
   };
 };
 
 exports.getPlayerMeasures = ($) => {
   const weight = teamService.convertPoundsToKg(
-      utilsService.getTagTextByTagName(
-          $,
-          config.team.playerTags.weight,
-      ),
+    utilsService.getTagTextByTagName($, config.team.playerTags.weight)
   );
   const height = teamService.convertHeight(
-      utilsService.getTagTextByTagName(
-          $,
-          config.team.playerTags.height,
-      ),
+    utilsService.getTagTextByTagName($, config.team.playerTags.height)
   );
 
   return { weight, height };
@@ -58,9 +52,11 @@ exports.convertPoundsToKg = (pounds) => {
 exports.convertHeight = (height) => {
   if (typeof height !== 'string' || !height.includes('-')) return '';
 
-  const [ feet, inches ] = height.split('-');
-  const converted = utilsService
-      .convertFeetInchesToMeters(Number(feet), Number(inches));
+  const [feet, inches] = height.split('-');
+  const converted = utilsService.convertFeetInchesToMeters(
+    Number(feet),
+    Number(inches)
+  );
   return `${converted.replace('.', ',')}m`;
 };
 
@@ -71,8 +67,10 @@ exports.getPlayerName = ($) =>
   utilsService.getTagTextByTagName($, config.team.playerTags.player);
 
 exports.getPlayerPosition = ($) => {
-  const position =
-        utilsService.getTagTextByTagName($, config.team.playerTags.position);
+  const position = utilsService.getTagTextByTagName(
+    $,
+    config.team.playerTags.position
+  );
 
   return teamService.getPosition(position);
 };
@@ -81,8 +79,10 @@ exports.getPosition = (position) =>
   constants.positions[position] || 'Não definida';
 
 exports.getPlayerBirthday = ($) => {
-  const birthday =
-    utilsService.getTagTextByTagName($, config.team.playerTags.birthday);
+  const birthday = utilsService.getTagTextByTagName(
+    $,
+    config.team.playerTags.birthday
+  );
   return utilsService.formatDate(new Date(birthday));
 };
 

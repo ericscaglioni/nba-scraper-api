@@ -3,7 +3,7 @@ const stringToReplace = '#CODE#';
 const logoCodes = {
   PHO: 'PHX',
   BRK: 'BKN',
-  CHO: 'CHA',
+  CHO: 'CHA'
 };
 
 const positions = {
@@ -11,7 +11,7 @@ const positions = {
   SG: 'Ala armador',
   SF: 'Ala',
   PF: 'Ala pivô',
-  C: 'Pivô',
+  C: 'Pivô'
 };
 
 const poundsToKgDivisor = 2.2046;
@@ -26,5 +26,5 @@ module.exports = {
   positions,
   poundsToKgDivisor,
   feetMultiplier,
-  inchesMultiplier,
+  inchesMultiplier
 };

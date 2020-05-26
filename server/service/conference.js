@@ -4,8 +4,7 @@ const constants = require('../utils/constants');
 const conferenceService = require('./conference');
 
 exports.getConferences = async () => {
-  const $ =
-    await utilsService.getParsedHtml(config.conferenceTeams.url);
+  const $ = await utilsService.getParsedHtml(config.conferenceTeams.url);
   if (!$) return {};
 
   const easternTeams = conferenceService.getEasternTeams($);
@@ -17,19 +16,23 @@ exports.getConferences = async () => {
   return {
     conferences: {
       eastern: easternTeams,
-      western: westernTeams,
-    },
+      western: westernTeams
+    }
   };
 };
 
 exports.getEasternTeams = ($) => {
-  return conferenceService
-      .getTeamsByConferenceId($, config.conferenceTeams.easterndivId);
+  return conferenceService.getTeamsByConferenceId(
+    $,
+    config.conferenceTeams.easterndivId
+  );
 };
 
 exports.getWesternTeams = ($) => {
-  return conferenceService
-      .getTeamsByConferenceId($, config.conferenceTeams.westernDivId);
+  return conferenceService.getTeamsByConferenceId(
+    $,
+    config.conferenceTeams.westernDivId
+  );
 };
 
 exports.getTeamsByConferenceId = ($, confDivId) => {
@@ -38,7 +41,7 @@ exports.getTeamsByConferenceId = ($, confDivId) => {
 
   const teams = [];
 
-  teamsRows.each(function() {
+  teamsRows.each(function () {
     teams.push(conferenceService.getTeam($, this));
   });
 
@@ -46,27 +49,28 @@ exports.getTeamsByConferenceId = ($, confDivId) => {
 };
 
 exports.getTeam = ($, that) => {
-  const teamAnchorLink =
-          $(that).find(`[data-stat=${config.conferenceTeams.nameTag}] a`);
+  const teamAnchorLink = $(that).find(
+    `[data-stat=${config.conferenceTeams.nameTag}] a`
+  );
 
   const code = teamAnchorLink.text();
   return {
     logo: config.team.logoUrl.replace(
-        constants.stringToReplace,
-        conferenceService.getLogoCode(code),
+      constants.stringToReplace,
+      conferenceService.getLogoCode(code)
     ),
     code: code,
     name: teamAnchorLink.attr('title'),
     record: {
       wins: utilsService.getTagTextByTagName(
-          $(that),
-          config.conferenceTeams.winsTag,
+        $(that),
+        config.conferenceTeams.winsTag
       ),
       losses: utilsService.getTagTextByTagName(
-          $(that),
-          config.conferenceTeams.lossesTag,
-      ),
-    },
+        $(that),
+        config.conferenceTeams.lossesTag
+      )
+    }
   };
 };
 

@@ -47,7 +47,7 @@ describe('Team Service', () => {
   it('Get Player Position - Success', () => {
     let counter = 0;
     let response = '';
-    teamRosterRows.each(function() {
+    teamRosterRows.each(function () {
       if (counter === 1) return;
       response = teamService.getPlayerPosition($(this));
       counter++;
@@ -57,12 +57,12 @@ describe('Team Service', () => {
 
   it('Get Player Position - Failure', () => {
     const getTagTextByTagName = jest
-        .spyOn(utilsService, 'getTagTextByTagName')
-        .mockReturnValueOnce('');
+      .spyOn(utilsService, 'getTagTextByTagName')
+      .mockReturnValueOnce('');
 
     let counter = 0;
     let response = '';
-    teamRosterRows.each(function() {
+    teamRosterRows.each(function () {
       if (counter === 1) return;
       response = teamService.getPlayerPosition($(this));
       counter++;
@@ -70,7 +70,6 @@ describe('Team Service', () => {
     expect(response).toBe('Não definida');
     expect(getTagTextByTagName).toHaveBeenCalled();
   });
-
 
   it('Convert Pounds to KG', () => {
     let expectedResult = '45.4kg';
@@ -104,7 +103,7 @@ describe('Team Service', () => {
   it('Get Measures - Success', () => {
     let counter = 0;
     let response = undefined;
-    teamRosterRows.each(function() {
+    teamRosterRows.each(function () {
       if (counter === 1) return;
       response = teamService.getPlayerMeasures($(this));
       counter++;
@@ -116,7 +115,7 @@ describe('Team Service', () => {
   it('Get Player Number', () => {
     let counter = 0;
     let response = undefined;
-    teamRosterRows.each(function() {
+    teamRosterRows.each(function () {
       if (counter === 1) return;
       response = teamService.getPlayerNumber($(this));
       counter++;
@@ -126,12 +125,12 @@ describe('Team Service', () => {
 
   it('Get Player Birthday', () => {
     const getTagTextByTagName = jest
-        .spyOn(utilsService, 'getTagTextByTagName')
-        .mockReturnValueOnce('May 16, 1997');
+      .spyOn(utilsService, 'getTagTextByTagName')
+      .mockReturnValueOnce('May 16, 1997');
 
     let counter = 0;
     let response = undefined;
-    teamRosterRows.each(function() {
+    teamRosterRows.each(function () {
       if (counter === 1) return;
       response = teamService.getPlayerBirthday($(this));
       counter++;
@@ -151,7 +150,7 @@ describe('Team Service', () => {
     Date.now = jest.fn(() => new Date('2020-01-01T12:33:37.000Z'));
     let counter = 0;
     let response = undefined;
-    teamRosterRows.each(function() {
+    teamRosterRows.each(function () {
       if (counter === 1) return;
       response = teamService.getPlayer($, this);
       counter++;

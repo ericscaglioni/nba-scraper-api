@@ -3,5 +3,5 @@ const getTeam = (req, res) => {
 };
 
 module.exports = {
-  getTeam,
+  getTeam
 };

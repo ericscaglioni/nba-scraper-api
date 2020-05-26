@@ -18,7 +18,7 @@ describe('Conference Service', () => {
     const teamsRows = $(`#${config.conferenceTeams.easterndivId} tbody tr`);
     let counter = 0;
     let response = undefined;
-    teamsRows.each(function() {
+    teamsRows.each(function () {
       if (counter === 1) return;
       response = service.getTeam($, this);
       counter++;
@@ -32,8 +32,10 @@ describe('Conference Service', () => {
   });
 
   it('By Conference Id - Success', () => {
-    const response = service
-        .getTeamsByConferenceId($, config.conferenceTeams.easterndivId);
+    const response = service.getTeamsByConferenceId(
+      $,
+      config.conferenceTeams.easterndivId
+    );
 
     expect(response).toHaveLength(15);
 
@@ -46,8 +48,7 @@ describe('Conference Service', () => {
   });
 
   it('By Conference Id - Failure', () => {
-    const response = service
-        .getTeamsByConferenceId($, 'teste');
+    const response = service.getTeamsByConferenceId($, 'teste');
 
     expect(response).toHaveLength(0);
   });
@@ -90,15 +91,17 @@ describe('Conference Service', () => {
 
   it('Get all conferences - Success', async () => {
     const getParsedHtml = jest
-        .spyOn(utilsService, 'getParsedHtml')
-        .mockResolvedValueOnce(cheerio.load(mock.teamsDiv));
+      .spyOn(utilsService, 'getParsedHtml')
+      .mockResolvedValueOnce(cheerio.load(mock.teamsDiv));
 
     const getTeamsByConferenceId = jest
-        .spyOn(service, 'getTeamsByConferenceId')
-        .mockReturnValue(mock.getTeamsByConference);
+      .spyOn(service, 'getTeamsByConferenceId')
+      .mockReturnValue(mock.getTeamsByConference);
 
     const response = await service.getConferences();
-    expect(getParsedHtml).toHaveBeenCalledWith('https://www.basketball-reference.com/');
+    expect(getParsedHtml).toHaveBeenCalledWith(
+      'https://www.basketball-reference.com/'
+    );
     expect(getTeamsByConferenceId).toHaveBeenCalledTimes(2);
     expect(response.conferences).toHaveProperty('eastern');
     expect(response.conferences).toHaveProperty('western');
@@ -128,15 +131,15 @@ describe('Conference Service', () => {
     const url = 'https://www.basketball-reference.com/';
 
     const getParsedHtml = jest
-        .spyOn(utilsService, 'getParsedHtml')
-        .mockResolvedValueOnce('')
-        .mockResolvedValue(cheerio.load(mock.teamsDiv));
+      .spyOn(utilsService, 'getParsedHtml')
+      .mockResolvedValueOnce('')
+      .mockResolvedValue(cheerio.load(mock.teamsDiv));
 
     const getTeamsByConferenceId = jest
-        .spyOn(service, 'getTeamsByConferenceId')
-        .mockReturnValueOnce([])
-        .mockReturnValueOnce(mock.getTeamsByConference)
-        .mockReturnValueOnce([]);
+      .spyOn(service, 'getTeamsByConferenceId')
+      .mockReturnValueOnce([])
+      .mockReturnValueOnce(mock.getTeamsByConference)
+      .mockReturnValueOnce([]);
 
     let response = await service.getConferences();
     expect(getParsedHtml).toHaveBeenCalledWith(url);

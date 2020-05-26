@@ -8,11 +8,9 @@ describe('Utils Service', () => {
   it('Get Parsed HTML - Success', async () => {
     const axiosResponse = {
       status: 200,
-      data: `<!DOCTYPE html><html><h1>Sucesso</h1></html>`,
+      data: `<!DOCTYPE html><html><h1>Sucesso</h1></html>`
     };
-    const load = jest
-        .spyOn(cheerio, 'load')
-        .mockReturnValueOnce('sucesso');
+    const load = jest.spyOn(cheerio, 'load').mockReturnValueOnce('sucesso');
 
     axios.mockResolvedValueOnce(axiosResponse);
     await expect(utilsService.getParsedHtml('')).resolves.toEqual('sucesso');
@@ -30,47 +28,46 @@ describe('Utils Service', () => {
 
   it('Convert Feet and Inches to Centimeter', () => {
     const height = '5-11';
-    let [ feet, inches ] = height.split('-');
+    let [feet, inches] = height.split('-');
 
-    let response =
-      utilsService.convertFeetInchesToCm(Number(feet), Number(inches));
+    let response = utilsService.convertFeetInchesToCm(
+      Number(feet),
+      Number(inches)
+    );
     expect(response).toBe(180.34);
 
     feet = 6;
-    response =
-      utilsService.convertFeetInchesToCm(feet, Number(inches));
+    response = utilsService.convertFeetInchesToCm(feet, Number(inches));
     expect(response).toBe(210.82);
   });
 
   it('Convert Centimeter to Meters', () => {
     const height = '5-11';
-    let [ feet, inches ] = height.split('-');
+    let [feet, inches] = height.split('-');
 
-    let response =
-      utilsService.convertFeetInchesToMeters(Number(feet), Number(inches));
+    let response = utilsService.convertFeetInchesToMeters(
+      Number(feet),
+      Number(inches)
+    );
     expect(response).toBe('1.80');
 
     feet = 6;
-    response =
-      utilsService.convertFeetInchesToMeters(feet, Number(inches));
+    response = utilsService.convertFeetInchesToMeters(feet, Number(inches));
     expect(response).toBe('2.11');
   });
 
   it('Get Tag By Name - Success', () => {
     const $ = cheerio.load(mock.teamsDiv);
-    const teamsRows = $(
-        `#${config.conferenceTeams.westernDivId} tbody tr`,
-    );
+    const teamsRows = $(`#${config.conferenceTeams.westernDivId} tbody tr`);
 
     let i = 0;
     let response = '';
-    teamsRows.each(function() {
+    teamsRows.each(function () {
       if (i === 1) return;
-      response =
-        utilsService.getTagTextByTagName(
-            $(this),
-            config.conferenceTeams.winsTag,
-        );
+      response = utilsService.getTagTextByTagName(
+        $(this),
+        config.conferenceTeams.winsTag
+      );
       i++;
     });
 
@@ -80,18 +77,17 @@ describe('Utils Service', () => {
   it('Get Tag By Name - Failure', () => {
     const $ = cheerio.load(mock.teamsDiv);
     const teamsRows = $(
-        `#${config.conferenceTeams.westernDivId} tbody tr teste`,
+      `#${config.conferenceTeams.westernDivId} tbody tr teste`
     );
 
     let i = 0;
     let response = '';
-    teamsRows.each(function() {
+    teamsRows.each(function () {
       if (i === 1) return;
-      response =
-        utilsService.getTagTextByTagName(
-            $(this),
-            config.conferenceTeams.winsTag,
-        );
+      response = utilsService.getTagTextByTagName(
+        $(this),
+        config.conferenceTeams.winsTag
+      );
       i++;
     });
 

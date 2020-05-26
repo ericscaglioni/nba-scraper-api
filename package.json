@@ -8,7 +8,8 @@
     "lint": "eslint --ignore-path .gitignore .",
     "lint:fix": "eslint --ignore-path .gitignore . --fix",
     "server": "node ./server/app.js",
-    "dev": "NODE_ENV=development npm run server"
+    "dev": "NODE_ENV=development npm run server",
+    "prettier": "prettier --config .prettierrc 'server/**/*.js' --write"
   },
   "keywords": [],
   "author": "",
@@ -26,14 +27,16 @@
     "@types/jest": "^25.2.2",
     "eslint": "^7.0.0",
     "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
+    "prettier": "^2.0.5",
     "supertest": "^4.0.2"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint:fix",
-      "pre-push": "npm run lint:fix && npm test"
+      "pre-push": "npm run prettier && npm run lint:fix && npm test"
     }
   },
   "testEnvironment": "node"
