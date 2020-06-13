@@ -28,4 +28,3 @@ it('GET /conferences - Failure', async (done) => {
   expect(response.body).toEqual(mock.getConferencesErrorResponse);
   done();
 });
-
