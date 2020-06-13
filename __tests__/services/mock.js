@@ -249,21 +249,21 @@ const teamsDiv = `<div class="" id="teams">
 </div>`;
 
 const getTeamsByConference = [
-  { code: '', name: '', record: { wins: 0, losses: 0} },
-  { code: '', name: '', record: { wins: 0, losses: 0} },
-  { code: '', name: '', record: { wins: 0, losses: 0} },
-  { code: '', name: '', record: { wins: 0, losses: 0} },
-  { code: '', name: '', record: { wins: 0, losses: 0} },
-  { code: '', name: '', record: { wins: 0, losses: 0} },
-  { code: '', name: '', record: { wins: 0, losses: 0} },
-  { code: '', name: '', record: { wins: 0, losses: 0} },
-  { code: '', name: '', record: { wins: 0, losses: 0} },
-  { code: '', name: '', record: { wins: 0, losses: 0} },
-  { code: '', name: '', record: { wins: 0, losses: 0} },
-  { code: '', name: '', record: { wins: 0, losses: 0} },
-  { code: '', name: '', record: { wins: 0, losses: 0} },
-  { code: '', name: '', record: { wins: 0, losses: 0} },
-  { code: '', name: '', record: { wins: 0, losses: 0} }
+  { code: '', name: '', record: { wins: 0, losses: 0 } },
+  { code: '', name: '', record: { wins: 0, losses: 0 } },
+  { code: '', name: '', record: { wins: 0, losses: 0 } },
+  { code: '', name: '', record: { wins: 0, losses: 0 } },
+  { code: '', name: '', record: { wins: 0, losses: 0 } },
+  { code: '', name: '', record: { wins: 0, losses: 0 } },
+  { code: '', name: '', record: { wins: 0, losses: 0 } },
+  { code: '', name: '', record: { wins: 0, losses: 0 } },
+  { code: '', name: '', record: { wins: 0, losses: 0 } },
+  { code: '', name: '', record: { wins: 0, losses: 0 } },
+  { code: '', name: '', record: { wins: 0, losses: 0 } },
+  { code: '', name: '', record: { wins: 0, losses: 0 } },
+  { code: '', name: '', record: { wins: 0, losses: 0 } },
+  { code: '', name: '', record: { wins: 0, losses: 0 } },
+  { code: '', name: '', record: { wins: 0, losses: 0 } }
 ];
 
 const teamRosterTable = `<div class="table_outer_container">
@@ -314,12 +314,13 @@ const expectedPlayerResponse = {
   name: 'Terence Davis',
   position: 'Ala armador',
   bio: {
-      height: '1,93m',
-      weight: '93.0kg',
-      birthday: '16/05/1997',
-      age: 22
+    height: '1,93m',
+    weight: '93.0kg',
+    birthday: '16/05/1997',
+    age: 22
   }
 };
+
 
 module.exports = {
   teamsDiv,

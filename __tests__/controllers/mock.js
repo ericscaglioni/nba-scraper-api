@@ -33,8 +33,51 @@ const getConferencesErrorResponse = {
   data: {}
 };
 
+const playerResponse = {
+  number: '',
+  name: '',
+  position: '',
+  bio: {
+    height: '',
+    weight: '',
+    birthday: '',
+    age: 0
+  }
+};
+
+const rosterResponse = [
+  { ...playerResponse },
+  { ...playerResponse },
+  { ...playerResponse },
+  { ...playerResponse },
+  { ...playerResponse },
+  { ...playerResponse },
+  { ...playerResponse },
+  { ...playerResponse },
+  { ...playerResponse },
+  { ...playerResponse },
+  { ...playerResponse }
+];
+
+const teamServiceResponse = {
+  roster: [...rosterResponse]
+};
+
+const getTeamSuccessResponse = {
+  userMessage: '',
+  data: { ...teamServiceResponse }
+};
+
+const getTeamErrorResponse = {
+  userMessage: 'Ocorreu um problema no servidor. Tente novamente mais tarde.',
+  data: {}
+};
+
 module.exports = {
   getConferencesSuccessResponse,
   getConferencesErrorResponse,
-  getConferencesServiceResponse
+  getConferencesServiceResponse,
+  teamServiceResponse,
+  getTeamErrorResponse,
+  getTeamSuccessResponse
 };

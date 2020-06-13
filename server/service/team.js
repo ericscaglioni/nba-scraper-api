@@ -4,6 +4,16 @@ const config = require('../config/config');
 const teamService = require('./team');
 const moment = require('moment');
 
+exports.getTeam = async (teamCode) => {
+  const teamUrl = config.team.url.replace(constants.codeConstant, teamCode);
+  const $ = await utilsService.getParsedHtml(teamUrl);
+  if (!$) return {};
+  const roster = teamService.getTeamRoster($, config.team.rosterDivId);
+  return {
+    roster: roster
+  };
+};
+
 exports.getTeamRoster = ($, rosterDivId) => {
   const teamRosterRows = $(`#${rosterDivId} tbody tr`);
   if (!teamRosterRows || !teamRosterRows.length) return [];

@@ -1,4 +1,4 @@
-const stringToReplace = '#CODE#';
+const codeConstant = '#CODE#';
 
 const logoCodes = {
   PHO: 'PHX',
@@ -21,7 +21,7 @@ const feetMultiplier = 30.48;
 const inchesMultiplier = 2.54;
 
 module.exports = {
-  stringToReplace,
+  codeConstant,
   logoCodes,
   positions,
   poundsToKgDivisor,

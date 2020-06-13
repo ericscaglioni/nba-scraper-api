@@ -171,4 +171,36 @@ describe('Team Service', () => {
     const response = teamService.getTeamRoster($, 'config.team.rosterDivId');
     expect(response).toHaveLength(0);
   });
+
+  it('Get Team - Success', async () => {
+    Date.now = jest.fn(() => new Date('2020-01-01T12:33:37.000Z'));
+    const teamCode = 'TOR';
+    const url = `https://www.basketball-reference.com/teams/${teamCode}/2020.html`;
+
+    const getParsedHtml = jest
+      .spyOn(utilsService, 'getParsedHtml')
+      .mockResolvedValueOnce(cheerio.load(mock.teamRosterTable));
+
+    const response = await teamService.getTeam(teamCode);
+    expect(getParsedHtml).toHaveBeenCalledWith(url);
+    expect(Object.keys(response).length).toBe(1);
+
+    expect(response.roster).toHaveLength(17);
+
+    const [player] = response.roster;
+    expect(player).toEqual(mock.expectedPlayerResponse);
+  });
+
+  it('Get Team - Failure', async () => {
+    const teamCode = 'TOR';
+    const url = `https://www.basketball-reference.com/teams/${teamCode}/2020.html`;
+
+    const getParsedHtml = jest
+      .spyOn(utilsService, 'getParsedHtml')
+      .mockResolvedValueOnce('');
+
+    const response = await teamService.getTeam(teamCode);
+    expect(getParsedHtml).toHaveBeenCalledWith(url);
+    expect(response).toEqual({});
+  });
 });
