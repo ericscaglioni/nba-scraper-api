@@ -205,4 +205,26 @@ describe('Team Service', () => {
     expect(getParsedHtml).toHaveBeenCalledWith(url);
     expect(response).toEqual({});
   });
+
+  it('Order roster array by player number', () => {
+    const expectedResult = [
+      { number: 2 },
+      { number: 5 },
+      { number: 19 },
+      { number: 34 },
+      { number: 75 },
+      { number: 99 }
+    ];
+    const playersArray = [
+      { number: 34 },
+      { number: 19 },
+      { number: 2 },
+      { number: 75 },
+      { number: 99 },
+      { number: 5 }
+    ];
+
+    const sortedArray = playersArray.sort(teamService.orderByPlayerNumber);
+    expect(sortedArray).toEqual(expectedResult);
+  });
 });

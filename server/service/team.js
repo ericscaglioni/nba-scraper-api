@@ -24,8 +24,11 @@ exports.getTeamRoster = ($, rosterDivId) => {
     roster.push(teamService.getPlayer($, this));
   });
 
-  return roster;
+  return roster.sort(teamService.orderByPlayerNumber);
 };
+
+exports.orderByPlayerNumber = (playerA, playerB) =>
+  playerA.number - playerB.number;
 
 exports.getPlayer = ($, that) => {
   const { height, weight } = teamService.getPlayerMeasures($(that));
