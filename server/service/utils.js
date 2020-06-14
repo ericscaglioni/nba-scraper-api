@@ -27,5 +27,4 @@ exports.formatDate = (date) => {
   return moment(date).format('DD/MM/YYYY');
 };
 
-exports.getTeamNameByCode = teamCode =>
-  constants.teamNames[teamCode];
+exports.getTeamNameByCode = (teamCode) => constants.teamNames[teamCode];

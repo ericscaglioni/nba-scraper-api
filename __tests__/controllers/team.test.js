@@ -19,7 +19,9 @@ describe('Team Controller', () => {
   });
 
   it('GET /team/teamCode - Failure', async (done) => {
-    const getTeam = jest.spyOn(teamService, 'getTeam').mockResolvedValueOnce({});
+    const getTeam = jest
+      .spyOn(teamService, 'getTeam')
+      .mockResolvedValueOnce({});
 
     const response = await supertest(app).get(teamRoute);
     expect(getTeam).toHaveBeenCalledWith('LAL');
