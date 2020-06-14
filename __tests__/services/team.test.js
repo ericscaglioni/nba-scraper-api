@@ -183,8 +183,10 @@ describe('Team Service', () => {
 
     const response = await teamService.getTeam(teamCode);
     expect(getParsedHtml).toHaveBeenCalledWith(url);
-    expect(Object.keys(response).length).toBe(1);
 
+    expect(Object.keys(response).length).toBe(2);
+
+    expect(response.name).toBe('Toronto Raptors');
     expect(response.roster).toHaveLength(17);
 
     const [player] = response.roster;

@@ -103,4 +103,15 @@ describe('Utils Service', () => {
     response = utilsService.formatDate(date);
     expect(response).toBe('');
   });
+
+  it('Get team name by code', () => {
+    let response = utilsService.getTeamNameByCode('ORL');
+    expect(response).toBe('Orlando Magic');
+
+    response = utilsService.getTeamNameByCode('MIN');
+    expect(response).toBe('Minnesota Timberwolves');
+
+    response = utilsService.getTeamNameByCode('PHI');
+    expect(response).toBe('Philadelphia 76ers');
+  });
 });

@@ -10,6 +10,7 @@ exports.getTeam = async (teamCode) => {
   if (!$) return {};
   const roster = teamService.getTeamRoster($, config.team.rosterDivId);
   return {
+    name: utilsService.getTeamNameByCode(teamCode),
     roster: roster
   };
 };

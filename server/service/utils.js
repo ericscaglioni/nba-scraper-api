@@ -26,3 +26,6 @@ exports.formatDate = (date) => {
   if (!date || !(date instanceof Date)) return '';
   return moment(date).format('DD/MM/YYYY');
 };
+
+exports.getTeamNameByCode = teamCode =>
+  constants.teamNames[teamCode];

@@ -60,12 +60,28 @@ const rosterResponse = [
 ];
 
 const teamServiceResponse = {
+  name: '',
   roster: [...rosterResponse]
 };
 
 const getTeamSuccessResponse = {
   userMessage: '',
-  data: { ...teamServiceResponse }
+  data: {
+    name: '',
+    roster: [
+      { ...playerResponse },
+      { ...playerResponse },
+      { ...playerResponse },
+      { ...playerResponse },
+      { ...playerResponse },
+      { ...playerResponse },
+      { ...playerResponse },
+      { ...playerResponse },
+      { ...playerResponse },
+      { ...playerResponse },
+      { ...playerResponse }
+    ]
+  }
 };
 
 const getTeamErrorResponse = {
